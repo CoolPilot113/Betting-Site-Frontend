@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'Century Gothic';
+    src: url('./fonts/Century\ Gothic.otf') format('opentype'), url('./fonts/Century\ Gothic\ Bold.otf') format('opentype'), url('./fonts/Century\ Gothic\ Bold\ Italic.otf') format('opentype'), url('./fonts/Century\ Gothic\ Italic.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'Century Gothic Bold';
+    src: url('./fonts/Century\ Gothic\ Bold.otf') format('opentype');
+}

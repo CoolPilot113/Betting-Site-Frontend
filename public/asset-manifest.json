@@ -1,0 +1,39 @@
+{
+  "files": {
+    "main.css": "/static/css/main.cf7c423b.css",
+    "main.js": "/static/js/main.6c24f67a.js",
+    "static/js/787.79ab35b3.chunk.js": "/static/js/787.79ab35b3.chunk.js",
+    "static/media/keno.png": "/static/media/keno.78ef8df80d0db86fd440.png",
+    "static/media/slots.png": "/static/media/slots.d1cdec7c81f65b1c8a54.png",
+    "static/media/limbo.png": "/static/media/limbo.dc6220ed2c3e4f49abad.png",
+    "static/media/unboxing.png": "/static/media/unboxing.af83f11d7ded5f7907a4.png",
+    "static/media/coinflip.png": "/static/media/coinflip.0044b9a4230a72978a8e.png",
+    "static/media/roulette.png": "/static/media/roulette.f60619bcf1023f3f3e0c.png",
+    "static/media/plinko.png": "/static/media/plinko.fb86af8d409730a67b6c.png",
+    "static/media/dice.png": "/static/media/dice.688f754c94476fad3232.png",
+    "static/media/towers.png": "/static/media/towers.556e30672e161fb5c245.png",
+    "static/media/mines.png": "/static/media/mines.6152ccb32cfe24b2504a.png",
+    "static/media/crash.png": "/static/media/crash.90f2a18688655eea5059.png",
+    "static/media/reme.png": "/static/media/reme.a915f937aaa6884d0a3d.png",
+    "static/media/blackjack.png": "/static/media/blackjack.34c8bc6e53775f31f1ef.png",
+    "static/media/online.svg": "/static/media/online.c1f84f905842625715695e152bd361ec.svg",
+    "static/media/users.svg": "/static/media/users.87cf56a3030346ef39b8bcd9813f1181.svg",
+    "static/media/profile.svg": "/static/media/profile.e415e744a5e74a67600d7d20a84c4443.svg",
+    "static/media/gamePlayIcon.svg": "/static/media/gamePlayIcon.1d621a0105998e058658bde980066800.svg",
+    "static/media/packIcon.svg": "/static/media/packIcon.7eb8da514af9278e86eefb393a31546d.svg",
+    "static/media/cup.svg": "/static/media/cup.beabc7cca41f6f2b07099529129d53d9.svg",
+    "static/media/comingsoon_2.png": "/static/media/comingsoon_2.947ac1ed5ab19ab83563.png",
+    "static/media/leaderBoard.svg": "/static/media/leaderBoard.763a1dc65932b4ec93f9ae78c09be2d8.svg",
+    "static/media/comingsoon_1.svg": "/static/media/comingsoon_1.e2db52b5c671b41c1025faa37c9d2489.svg",
+    "static/media/Diamond lock.svg": "/static/media/Diamond lock.95c399c1e55f5e255d65aebc35557758.svg",
+    "static/media/arrowIcon.svg": "/static/media/arrowIcon.31af91c385fbf55162f767361a72c8f2.svg",
+    "index.html": "/index.html",
+    "main.cf7c423b.css.map": "/static/css/main.cf7c423b.css.map",
+    "main.6c24f67a.js.map": "/static/js/main.6c24f67a.js.map",
+    "787.79ab35b3.chunk.js.map": "/static/js/787.79ab35b3.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.cf7c423b.css",
+    "static/js/main.6c24f67a.js"
+  ]
+}
