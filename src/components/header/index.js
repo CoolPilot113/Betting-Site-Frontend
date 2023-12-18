@@ -23,6 +23,18 @@ import LoginModal from '../Auth/LoginModal';
 import RegisterModal from '../Auth/RegisterModal';
 import GameList from '../Home/GameList/GameList';
 
+import { toast } from 'react-toastify';
+
+let len = 0;
+
+const MyIcon = () => {
+  return (
+    <span className="w-4 h-4 rounded-full flex items-center justify-center bg-red-500 text-white font-bold self-start shrink-0 justify-self-start">
+      &times;
+    </span>
+  );
+};
+
 const Header = () => {
   const dispatch = useDispatch();
   const isLoginModalOpen = useSelector(
@@ -40,20 +52,12 @@ const Header = () => {
   const [dropdown, setDropdown] = useState(false);
 
   useEffect(() => {
-    console.log(localStorage.getItem('username'));
-    setModalShow(true);
     if (localStorage.getItem('username')) {
-      setIsLogin(localStorage.getItem('isLogin'));
+      setIsLogin(2);
     }
     if (localStorage.getItem('username') == 'undefined') {
-      console.log('>>>>>>>>>>>>>>>>');
       setIsLogin(1);
     }
-
-    setTimeout(() => {
-      console.log(modalRef.current);
-      setModalShow(false);
-    }, 3000);
   }, [localStorage.getItem('isLogin')]);
 
   useEffect(() => {
@@ -377,7 +381,7 @@ const Header = () => {
       >
         <GameList />
       </div>
-      {isLogin != 0 && modalShow && (
+      {/* {isLogin != 0 && modalShow && (
         <div
           ref={modalRef}
           className={`modal bg-[#191919] rounded-lg flex absolute right-10 bottom-5 w-[312px] h-[70px]`}
@@ -401,7 +405,7 @@ const Header = () => {
             }  h-3 w-full absolute bottom-0 rounded-b-lg`}
           ></span>
         </div>
-      )}
+      )} */}
     </div>
   );
 };

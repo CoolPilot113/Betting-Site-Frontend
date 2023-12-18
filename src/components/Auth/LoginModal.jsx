@@ -8,6 +8,14 @@ import { Dialog, Transition } from '@headlessui/react';
 import ReCAPTCHA from 'react-google-recaptcha';
 import axios from 'axios';
 import { setAuthToken, setAuthUser } from '../redux/auth/authDataSlice';
+import { toast } from 'react-toastify';
+const MyIcon = () => {
+  return (
+    <span className="w-4 h-4 rounded-full flex items-center justify-center bg-red-500 text-white font-bold self-start shrink-0 justify-self-start">
+      &times;
+    </span>
+  );
+};
 export default function LoginModal() {
   const dispatch = useDispatch();
   const cancelButtonRef = useRef(null);
@@ -16,21 +24,36 @@ export default function LoginModal() {
     (state) => state.authModal.isLoginModalOpen
   );
   const [isCaptchaVerified, setIsCaptchaVerified] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
 
   const login = async () => {
-    console.log(userName, password);
+    setIsLoading(true);
     try {
       const res = await axios.post(
-        `${process.env.REACT_APP_SERVER_URL}/user/login`,
+        `${process.env.REACT_APP_SERVER_URL}/api/user/login`,
         {
           username: userName,
           password: password,
         }
       );
       if (res.data.status === 200) {
+        toast('You successfully login!', {
+          position: 'bottom-right',
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+          theme: 'dark',
+          progressStyle: {
+            backgroundColor: '#087a04',
+          },
+          closeButton: MyIcon,
+        });
         localStorage.setItem('token', res.data.token);
         localStorage.setItem('username', res.data.username);
         localStorage.setItem('isLogin', 2);
@@ -39,18 +62,49 @@ export default function LoginModal() {
         dispatch(setAuthToken(res.data.token));
         dispatch(setAuthUser(res.data.username));
 
+        setIsLoading(false);
         dispatch(closeLoginModal());
       } else {
+        toast('Login failed!', {
+          position: 'bottom-right',
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+          theme: 'dark',
+          progressStyle: {
+            backgroundColor: '#f44336',
+          },
+          closeButton: MyIcon,
+        });
         localStorage.setItem('username', 'undefined');
         localStorage.setItem('isLogin', 1);
         dispatch(closeLoginModal());
+        setIsLoading(false);
       }
     } catch (err) {
       if (err.response !== undefined && err.response !== null) {
         // dispatch('notificationShow', err.response.data.error);
+        toast('Login failed!', {
+          position: 'bottom-right',
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+          theme: 'dark',
+          progressStyle: {
+            backgroundColor: '#f44336',
+          },
+          closeButton: MyIcon,
+        });
 
         console.log(err);
       }
+      setIsLoading(false);
     }
   };
 
@@ -147,10 +201,32 @@ export default function LoginModal() {
                     <div className="mt-5">
                       <button
                         type="submit"
-                        className={`w-3/4 py-2 rounded-[5px] bg-[#F44336] w-full cursor-pointer`}
+                        className={`py-2 rounded-[5px] bg-[#F44336] flex w-full cursor-pointer justify-center`}
                         onClick={login}
                         // disabled={!isCaptchaVerified ? true : false}
                       >
+                        {isLoading && (
+                          <svg
+                            className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                          >
+                            <circle
+                              class="opacity-25"
+                              cx="12"
+                              cy="12"
+                              r="10"
+                              stroke="currentColor"
+                              stroke-width="4"
+                            ></circle>
+                            <path
+                              class="opacity-75"
+                              fill="currentColor"
+                              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                            ></path>
+                          </svg>
+                        )}
                         Sign in
                       </button>
                     </div>

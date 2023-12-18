@@ -10,7 +10,7 @@ import { ReactComponent as ProfileIcon } from '../../assets/profile.svg';
 import avatar from '../../assets/img/avatar.png';
 
 const Navbar = ({}) => {
-  const [message, setMessage] = useState();
+  const [message, setMessage] = useState('');
   const messages = useSelector((state) => state.message);
 
   console.log({ messages });
@@ -19,19 +19,13 @@ const Navbar = ({}) => {
     setMessage(event.target.value);
   };
   const handleSubmit = (event) => {
+    setMessage('');
     event.preventDefault();
-    console.log(message);
     socket.emit('message', {
       username: localStorage.getItem('username'),
       message: message,
     });
   };
-
-  //   useEffect(() => {
-  //     socket.on('chat', (data) => {
-  //       console.log(data);
-  //     });
-  //   });
 
   return (
     <div className="navbar-container leading-normal font-semibold bg-[#212121] shadow-[0_4px_4px_0px_rgb(0,0,0,0.5)] w-[354px] h-[calc(100vh-67px)] flex flex-col px-[10px] overflow-hidden">
@@ -71,8 +65,9 @@ const Navbar = ({}) => {
       >
         <input
           onChange={handleMessageChange}
-          className="w-full h-full text-white bg-[#0000] outline-none pl-2"
+          className="w-full h-full text-white bg-[#0000] outline-none pl-2 "
           placeholder="Send message"
+          value={message}
         />
       </form>
     </div>

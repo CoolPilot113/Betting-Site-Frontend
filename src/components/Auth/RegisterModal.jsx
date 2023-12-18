@@ -9,6 +9,14 @@ import {
 import { Dialog, Transition } from '@headlessui/react';
 import ReCAPTCHA from 'react-google-recaptcha';
 import { setAuthToken, setAuthUser } from '../redux/auth/authDataSlice';
+import { toast } from 'react-toastify';
+const MyIcon = () => {
+  return (
+    <span className="w-4 h-4 rounded-full flex items-center justify-center bg-red-500 text-white font-bold self-start shrink-0 justify-self-start">
+      &times;
+    </span>
+  );
+};
 
 export default function RegisterModal() {
   const dispatch = useDispatch();
@@ -18,16 +26,18 @@ export default function RegisterModal() {
     (state) => state.authModal.isRegisterModalOpen
   );
   const [isCaptchaVerified, setIsCaptchaVerified] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
 
   const register = async () => {
-    console.log(`${process.env.REACT_APP_SERVER_URL}/user/register`);
+    setIsLoading(true);
+    console.log(`${process.env.REACT_APP_SERVER_URL}/api/user/register`);
     try {
       const res = await axios.put(
-        `${process.env.REACT_APP_SERVER_URL}/user/register`,
+        `${process.env.REACT_APP_SERVER_URL}/api/user/register`,
         {
           username: userName,
           password: password,
@@ -38,19 +48,70 @@ export default function RegisterModal() {
       //   if (res.data.success) {
       if (res.status === 200) {
         localStorage.setItem('token', res.data.token);
-        axios.defaults.headers.common['x-auth-token'] = res.data.token;
+        localStorage.setItem('username', res.data.username);
+        localStorage.setItem('isLogin', 2);
 
+        toast('You successfully register!', {
+          position: 'bottom-right',
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+          theme: 'dark',
+          progressStyle: {
+            backgroundColor: '#087a04',
+          },
+          closeButton: MyIcon,
+        });
+
+        axios.defaults.headers.common['x-auth-token'] = res.data.token;
         dispatch(setAuthToken(res.data.token));
-        dispatch(setAuthUser(res.data.user));
+        dispatch(setAuthUser(res.data.username));
 
         dispatch(closeRegisterModal());
+      } else {
+        toast('register failed!', {
+          position: 'bottom-right',
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+          theme: 'dark',
+          progressStyle: {
+            backgroundColor: '#f44336',
+          },
+          closeButton: MyIcon,
+        });
+        localStorage.setItem('username', 'undefined');
+        localStorage.setItem('isLogin', 1);
+        dispatch(closeRegisterModal());
+        setIsLoading(false);
       }
     } catch (err) {
       if (err.response !== undefined && err.response !== null) {
         // dispatch('notificationShow', err.response.data.error);
+        toast('register failed!', {
+          position: 'bottom-right',
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+          theme: 'dark',
+          progressStyle: {
+            backgroundColor: '#f44336',
+          },
+          closeButton: MyIcon,
+        });
         console.log(err);
       }
     }
+    setIsLoading(false);
   };
 
   const handleRecaptchaVerify = async () => {
