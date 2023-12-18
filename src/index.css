@@ -18,19 +18,19 @@
 }
 
 #root {
-  font-family: 'Century Gothic Bold' !important;
+  font-family: 'Century Gothic' !important;
 }
 
 body {
   margin: 0;
-  font-family: 'Century Gothic Bold';
+  font-family: 'Century Gothic';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #1c1c1c;
 }
 
 code {
-  font-family: 'Century Gothic Bold';
+  font-family: 'Century Gothic';
 }
 
 /* .Toastify__progress-bar--success {

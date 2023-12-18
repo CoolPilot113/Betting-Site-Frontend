@@ -57,7 +57,6 @@ export default function LoginModal() {
         });
         localStorage.setItem('token', res.data.token);
         localStorage.setItem('username', res.data.username);
-        localStorage.setItem('isLogin', 2);
         axios.defaults.headers.common['x-auth-token'] = res.data.token;
 
         dispatch(setAuthToken(res.data.token));
@@ -99,9 +98,6 @@ export default function LoginModal() {
             closeButton: MyIcon,
           });
         }
-
-        localStorage.setItem('username', 'undefined');
-        localStorage.setItem('isLogin', 1);
         dispatch(closeLoginModal());
         setIsLoading(false);
       }

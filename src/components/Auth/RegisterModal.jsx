@@ -44,11 +44,9 @@ export default function RegisterModal() {
           email: email,
         }
       );
-
       if (res.data.status === 200) {
         localStorage.setItem('token', res.data.token);
         localStorage.setItem('username', res.data.username);
-        localStorage.setItem('isLogin', 2);
 
         toast('You successfully register!', {
           position: 'bottom-right',
@@ -105,9 +103,6 @@ export default function RegisterModal() {
             closeButton: MyIcon,
           });
         }
-
-        localStorage.setItem('username', 'undefined');
-        localStorage.setItem('isLogin', 1);
         dispatch(closeRegisterModal());
         setIsLoading(false);
       }
