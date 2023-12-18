@@ -17,6 +17,10 @@
   }
 }
 
+#root {
+  font-family: 'Century Gothic Bold' !important;
+}
+
 body {
   margin: 0;
   font-family: 'Century Gothic Bold';

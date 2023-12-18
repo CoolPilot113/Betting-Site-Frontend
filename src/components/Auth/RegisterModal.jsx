@@ -44,9 +44,8 @@ export default function RegisterModal() {
           email: email,
         }
       );
-      console.log(res);
-      //   if (res.data.success) {
-      if (res.status === 200) {
+
+      if (res.data.status === 200) {
         localStorage.setItem('token', res.data.token);
         localStorage.setItem('username', res.data.username);
         localStorage.setItem('isLogin', 2);
@@ -62,6 +61,7 @@ export default function RegisterModal() {
           theme: 'dark',
           progressStyle: {
             backgroundColor: '#087a04',
+            fontFamily: 'Century Gothic Bold',
           },
           closeButton: MyIcon,
         });
@@ -72,20 +72,40 @@ export default function RegisterModal() {
 
         dispatch(closeRegisterModal());
       } else {
-        toast('register failed!', {
-          position: 'bottom-right',
-          autoClose: 1000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: false,
-          draggable: true,
-          progress: undefined,
-          theme: 'dark',
-          progressStyle: {
-            backgroundColor: '#f44336',
-          },
-          closeButton: MyIcon,
-        });
+        if (res.data.status === 401) {
+          toast('Double userName', {
+            position: 'bottom-right',
+            autoClose: 1000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,
+            theme: 'dark',
+            progressStyle: {
+              backgroundColor: '#f44336',
+              fontFamily: 'Century Gothic Bold',
+            },
+            closeButton: MyIcon,
+          });
+        } else {
+          toast('register failed!', {
+            position: 'bottom-right',
+            autoClose: 1000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,
+            theme: 'dark',
+            progressStyle: {
+              backgroundColor: '#f44336',
+              fontFamily: 'Century Gothic Bold',
+            },
+            closeButton: MyIcon,
+          });
+        }
+
         localStorage.setItem('username', 'undefined');
         localStorage.setItem('isLogin', 1);
         dispatch(closeRegisterModal());
@@ -105,6 +125,7 @@ export default function RegisterModal() {
           theme: 'dark',
           progressStyle: {
             backgroundColor: '#f44336',
+            fontFamily: 'Century Gothic Bold',
           },
           closeButton: MyIcon,
         });
@@ -233,11 +254,36 @@ export default function RegisterModal() {
                     <div className="mt-5">
                       <button
                         type="submit"
-                        className={`w-3/4 py-2 rounded-[5px] bg-[#F44336] w-full cursor-pointer`}
+                        className={`py-2 flex rounded-[5px] bg-[#F44336] w-full cursor-pointer`}
                         onClick={register}
                         // disabled={!isCaptchaVerified ? true : false}
                       >
-                        Register
+                        {isLoading ? (
+                          <svg
+                            className="animate-spin mx-auto h-5 w-full text-white"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                          >
+                            <circle
+                              class="opacity-25"
+                              cx="12"
+                              cy="12"
+                              r="10"
+                              stroke="currentColor"
+                              stroke-width="4"
+                            ></circle>
+                            <path
+                              class="opacity-75"
+                              fill="currentColor"
+                              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                            ></path>
+                          </svg>
+                        ) : (
+                          <span className="h-full my-auto mx-auto">
+                            Register
+                          </span>
+                        )}
                       </button>
                     </div>
                     {/* <div className="mt-3">
