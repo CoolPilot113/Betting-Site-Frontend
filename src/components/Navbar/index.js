@@ -1,12 +1,10 @@
 import { ReactComponent as OnlineIcon } from '../../assets/online.svg';
-import Profile from './profile';
-// import ChatBody from './ChatBody';
+
 import { useEffect, useState } from 'react';
-// import ChatFooter from './ChatFooter';
-// import socket from '../../socket.js';
+
 import socket from '../../socket';
 import { useSelector } from 'react-redux';
-import { ReactComponent as ProfileIcon } from '../../assets/profile.svg';
+
 import avatar from '../../assets/img/avatar.png';
 
 const Navbar = ({}) => {
@@ -65,7 +63,7 @@ const Navbar = ({}) => {
       >
         <input
           onChange={handleMessageChange}
-          className="w-full h-full text-white bg-[#0000] outline-none pl-2 "
+          className="w-full h-full text-white bg-[#0000] outline-none pl-2"
           placeholder="Send message"
           value={message}
         />

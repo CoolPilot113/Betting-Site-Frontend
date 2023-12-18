@@ -51,6 +51,7 @@ export default function LoginModal() {
           theme: 'dark',
           progressStyle: {
             backgroundColor: '#087a04',
+            fontFamily: 'Century Gothic Bold',
           },
           closeButton: MyIcon,
         });
@@ -65,20 +66,40 @@ export default function LoginModal() {
         setIsLoading(false);
         dispatch(closeLoginModal());
       } else {
-        toast('Login failed!', {
-          position: 'bottom-right',
-          autoClose: 1000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: false,
-          draggable: true,
-          progress: undefined,
-          theme: 'dark',
-          progressStyle: {
-            backgroundColor: '#f44336',
-          },
-          closeButton: MyIcon,
-        });
+        if (res.data.status === 401) {
+          toast('Wrong username or password!', {
+            position: 'bottom-right',
+            autoClose: 1000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,
+            theme: 'dark',
+            progressStyle: {
+              backgroundColor: '#f44336',
+              fontFamily: 'Century Gothic Bold',
+            },
+            closeButton: MyIcon,
+          });
+        } else {
+          toast('This user does not exist!', {
+            position: 'bottom-right',
+            autoClose: 1000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,
+            theme: 'dark',
+            progressStyle: {
+              backgroundColor: '#f44336',
+              fontFamily: 'Century Gothic Bold',
+            },
+            closeButton: MyIcon,
+          });
+        }
+
         localStorage.setItem('username', 'undefined');
         localStorage.setItem('isLogin', 1);
         dispatch(closeLoginModal());
@@ -98,6 +119,7 @@ export default function LoginModal() {
           theme: 'dark',
           progressStyle: {
             backgroundColor: '#f44336',
+            fontFamily: 'Century Gothic Bold',
           },
           closeButton: MyIcon,
         });
@@ -205,9 +227,9 @@ export default function LoginModal() {
                         onClick={login}
                         // disabled={!isCaptchaVerified ? true : false}
                       >
-                        {isLoading && (
+                        {isLoading ? (
                           <svg
-                            className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                            className="animate-spin -ml-1 mr-3 h-full w-5 text-white"
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
                             viewBox="0 0 24 24"
@@ -226,8 +248,9 @@ export default function LoginModal() {
                               d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                             ></path>
                           </svg>
+                        ) : (
+                          <span className="h-full my-auto">Sign in</span>
                         )}
-                        Sign in
                       </button>
                     </div>
                     {/* <div className="mt-3">
