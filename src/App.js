@@ -17,14 +17,6 @@ import 'react-toastify/dist/ReactToastify.css';
 configSocket(socket);
 
 function App() {
-  localStorage.setItem('isLogin', 0);
-  //   const [visible, setVisible] = useState(false);
-  //   useEffect(() => {
-  //     const timer = setTimeout(() => {
-  //       setVisible(true);
-  //     }, 3000);
-  //     return () => clearTimeout(timer);
-  // }, []);
   return (
     <Provider store={store}>
       {/* <Loading visible={visible}/> */}
