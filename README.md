@@ -8,8 +8,8 @@
 
 # Preview
 
-![Home](Home.png)
-![CrashGame](Crash.png)
+![Home](Home.PNG)
+![CrashGame](Crash.PNG)
 
 ## Available Scripts
 
