@@ -203,7 +203,7 @@ const Header = () => {
         ref={myRef}
         className={`transition-all duration-300 absolute w-full bg-[#1c1c1c] z-[300] shadow-[0 25px 50px -12px rgb(0 0 0 / 1.25)] overflow-hidden`}
         style={{
-          maxHeight: dropdown ? '400px' : '0px',
+          maxHeight: dropdown ? 'none' : '0px',
           paddingBottom: dropdown ? '20px' : '0px',
         }}
       >
